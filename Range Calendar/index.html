@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Range</title>
+    <script src="https://kit.fontawesome.com/4c3daebd76.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat';
+        }
+
+        .input {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            border-radius: 50px;
+            background-color: rgba(0, 186, 216, 0.1);
+            width: 25%;
+        }
+
+        .rangeDates {
+            margin: 8px;
+            padding: 5px;
+            color: #000;
+        }
+
+        .input button {
+            border: none;
+            background-color: #00A4C8;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .calendar {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+            background-color: #fff;
+            border: 1px solid #e2e2e2;
+            width: 25%;
+            border-radius: 10px;
+            padding: 3px;
+            margin-top: 5px;
+        }
+
+        .currencyMonth {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 2px 0;
+            background-color: #e2e2e2;
+            border-radius: 10px;
+        }
+
+        .currencyMonth button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border: none;
+            background-color: #C9C9C9;
+            height: 20px;
+            width: 20px;
+            border-radius: 10px;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 30px);
+            grid-column-gap: 2px;
+            grid-row-gap: 2px;
+            justify-content: center;
+        }
+
+        .days span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            
+        }
+
+        .start, .end {
+            background-color: #00869B;
+            color: #fff;
+            border-radius: 5px;
+            
+            position: relative;
+            /* top: 10px; */
+            z-index: 2;
+        }
+
+        .start::before {
+            position: absolute;
+            left: 16px;
+            top: 2.5px;
+            content: '';
+            width: 19px;
+            height: 19px;
+            border-radius: 4px;
+            background-color: #00869B;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .end::before {
+            position: absolute;
+            right: 16px;
+            top: 2.5px;
+            content: '';
+            width: 19px;
+            height: 19px;
+            border-radius: 4px;
+            background-color: #00869B;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .range {
+            background-color: rgba(0, 186, 216, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const { createApp } = Vue;
+
+    const vue = createApp({
+        data() {
+            return {
+            }
+        },
+        template: `
+            <div>
+                <calendar-range></calendar-range>
+            </div>
+        `
+    })
+
+    vue.component("calendar-range", {
+        template: `
+            <div>
+                <div class="input">
+                    <div class="rangeDates">
+                        <span>17/04/2023 a 28/04/2023</span>
+                    </div>
+                    <button><i class="fa-solid fa-calendar-days"></i></button>
+                </div>
+                <div class="calendar">
+                    <div class="currencyMonth">
+                        <button class="afterMonth"><i class="fa-solid fa-chevron-left"></i></button>
+                        <h3>Abril</h3>
+                        <button class="nextMonth"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <div class="days">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                        <span>15</span><span>16</span><span class="start">17</span><span class="range">18</span><span class="range">19</span><span class="range">20</span><span class="range">21</span>
+                        <span class="range">22</span><span class="range">23</span><span class="range">24</span><span class="end">25</span><span>26</span><span>27</span><span>28</span>
+                        <span>19</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+            </div>
+        `
+    })
+
+    vue.mount("#app")
+</script>
+</html>
